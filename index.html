@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smart Attendance Analyzer - manage attendance and view class analytics.">
+  <title>Smart Attendance Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">SA</span><span>Smart<span class="brand-light">Attend</span></span></a>
+      <p class="side-label">WORKSPACE</p>
+      <a class="nav-item active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-item" href="#attendance"><span>✓</span> Attendance</a>
+      <a class="nav-item" href="#students"><span>♙</span> Students</a>
+      <a class="nav-item" href="#reports"><span>▤</span> Reports</a>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><strong>Attendance made simple</strong><p>Track class activity and make informed decisions.</p></div>
+        <div class="profile"><div class="avatar">AD</div><div><strong>Administrator</strong><small>Workspace</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">ACADEMIC WORKSPACE</span><h1>Attendance overview</h1></div><div class="top-actions"><span class="today-chip" id="todayLabel"></span><button class="button button-primary" id="quickMark">＋ Mark attendance</button></div></header>
+
+      <section id="overview">
+        <div class="welcome"><div><p class="welcome-kicker">YOUR CLASS AT A GLANCE</p><h2>Make every day count.</h2><p>Monitor attendance, understand patterns, and keep your class on track.</p></div><div class="welcome-art">◎</div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total students</span><span class="stat-icon purple">♙</span></div><strong id="totalStudents">0</strong><small>Registered in your class</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Present today</span><span class="stat-icon green">✓</span></div><strong id="presentToday">0</strong><small id="presentSub">Marked present today</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Absent today</span><span class="stat-icon red">−</span></div><strong id="absentToday">0</strong><small>Needs follow-up</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Attendance rate</span><span class="stat-icon blue">↗</span></div><strong id="attendanceRate">0%</strong><small>Across all recorded days</small></article>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel attendance-panel" id="attendance">
+          <div class="panel-heading"><div><span class="eyebrow">DAILY REGISTER</span><h3>Attendance records</h3></div><div class="heading-actions"><input type="date" id="attendanceDate" class="date-input"><button class="button button-soft" id="exportBtn">↓ Export CSV</button></div></div>
+          <div class="toolbar"><input id="searchInput" class="search-input" type="search" placeholder="Search by student name or ID..."><select id="statusFilter" class="select-input"><option value="All">All statuses</option><option>Present</option><option>Absent</option><option>Late</option><option>Not marked</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>COURSE</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="attendanceTable"></tbody></table></div>
+          <p class="table-note" id="tableNote"></p>
+        </article>
+
+        <article class="panel insights-panel" id="reports">
+          <div class="panel-heading"><div><span class="eyebrow">CLASS ANALYTICS</span><h3>Attendance insights</h3></div><span class="live-dot">LIVE</span></div>
+          <div class="donut-wrap"><div class="donut" id="donut"><div><strong id="donutValue">0%</strong><small>Overall rate</small></div></div></div>
+          <div class="legend"><div><i class="legend-dot present"></i><span>Present</span><strong id="legendPresent">0</strong></div><div><i class="legend-dot absent"></i><span>Absent</span><strong id="legendAbsent">0</strong></div><div><i class="legend-dot late"></i><span>Late</span><strong id="legendLate">0</strong></div></div>
+          <div class="insight-tip"><span>✦</span><div><strong>Helpful insight</strong><p id="insightText">Start marking attendance to see class insights here.</p></div></div>
+        </article>
+      </section>
+
+      <section class="panel students-panel" id="students">
+        <div class="panel-heading"><div><span class="eyebrow">CLASS DIRECTORY</span><h3>Student management</h3></div><button class="button button-primary" id="addStudentBtn">＋ Add student</button></div>
+        <div class="student-list" id="studentList"></div>
+      </section>
+      <footer>Smart Attendance Analyzer <span>•</span> Built for smarter classroom management</footer>
+    </main>
+  </div>
+
+  <dialog id="studentDialog" class="modal">
+    <form id="studentForm" method="dialog"><div class="modal-heading"><div><span class="eyebrow">NEW RECORD</span><h3>Add a student</h3></div><button type="button" class="close-btn" id="closeDialog">×</button></div>
+      <label>Student ID<input name="id" required placeholder="e.g. STU006"></label>
+      <label>Full name<input name="name" required placeholder="Student full name"></label>
+      <label>Course / class<input name="course" required placeholder="e.g. Computer Science"></label>
+      <p class="form-error" id="formError"></p><button class="button button-primary full-button" type="submit">Save student</button>
+    </form>
+  </dialog>
+  <input type="file" id="csvFile" accept=".csv,text/csv" hidden>
+  <script src="app.js"></script>
+</body>
+</html>

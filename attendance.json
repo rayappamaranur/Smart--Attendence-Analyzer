@@ -1,0 +1,30 @@
+{
+  "students": [
+    {
+      "id": "STU001",
+      "name": "Aarav Sharma",
+      "course": "Computer Science"
+    },
+    {
+      "id": "STU002",
+      "name": "Diya Patel",
+      "course": "Computer Science"
+    },
+    {
+      "id": "STU003",
+      "name": "Kabir Rao",
+      "course": "Information Technology"
+    },
+    {
+      "id": "STU004",
+      "name": "Ananya Singh",
+      "course": "Information Technology"
+    },
+    {
+      "id": "STU005",
+      "name": "Ishaan Kumar",
+      "course": "Computer Science"
+    }
+  ],
+  "records": []
+}
